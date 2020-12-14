@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/seegno.css" id="theme" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="plugin/highlight/monokai.css"
+      id="highlight-theme"
+    />
+
+    <link rel="stylesheet" href="custom.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h1>How to make React apps</h1>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <ol>
+              <li>Data flow</li>
+              <li>Side Effects</li>
+              <li>Refs</li>
+              <li>Custom hooks</li>
+              <li>Render props</li>
+              <li>Context</li>
+              <li>Thinking in React</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Data flow</h3>
+          </section>
+          <section>
+            <p>Data flows down</p>
+            <img
+              height="400"
+              src="images/react-data-flow-1.png"
+              alt="Parent component passes props to the child components"
+            />
+            <aside class="notes">
+              Em React, a informação é sempre transferida num sentido único, dos
+              pais para os filhos.
+              <br />
+              Lembrem-se que o estado está dentro de um componente. Não é
+              possível aceder ao estado de um componente a partir de outro.
+              <br />
+              Para partilhar informação entre componentes, é preciso passar esse
+              estado por prop.
+            </aside>
+          </section>
+          <section>
+            <p>Send events up</p>
+            <img
+              height="400"
+              src="images/react-data-flow-2.png"
+              alt="Child sends event to parent"
+            />
+            <aside class="notes">
+              A comunicação de filhos para pais, faz-se por eventos. Já vimos o
+              caso do onClick, onChange e onSubmit.
+              <br />
+              Nos nossos components podemos criar as callbacks que precisarmos,
+              e podemos usa-las para enviar qualquer tipo de evento para o
+              componente pai.
+            </aside>
+          </section>
+          <section>
+            <a
+              href="https://codesandbox.io/s/cesium-react-session-data-flow-le67q?file=/src/app.js"
+              target="_blank"
+              >Code</a
+            >
+            <div class="fragment">
+              <a
+                href="https://codesandbox.io/s/cesium-react-session-data-flow-final-28ksb?file=/src/app.js"
+                target="_blank"
+                >Final</a
+              >
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Side Effects</h3>
+            <p class="fragment">
+              Components are pure functions that return elements
+            </p>
+            <p class="fragment">
+              Side effects are declared inside components with
+              <code>useEffect()</code>
+            </p>
+            <p class="fragment">Effects run after a component renders</p>
+            <aside class="notes">
+              Componentes em React devem ser funções puras. Quem já teve
+              Programação Funcional e Cálculo de Programas já deve ouvido este
+              termo. Uma função pura é uma função que recebe dados e retorna
+              dados, sem alterar na aplicação ou no sistema.
+              <br />
+              Operações que alteram o sistema, como a escrita de um ficheiro,
+              são o que normalmente se chama de efeitos secundários.
+              <br />
+              (click
+              <br />
+              Em React, efeitos secundários são declarados dentro de um
+              componente com uma função chamada useEffect().
+              <br />
+              Estes efeitos secundários serão executados no final do render
+            </aside>
+          </section>
+          <section>
+            <a
+              href="https://codesandbox.io/s/cesium-react-session-effects-1-mdgqg?file=/src/app.js"
+              target="_blank"
+              >Code</a
+            >
+            <div class="fragment">
+              <a
+                href="https://codesandbox.io/s/cesium-react-session-effects-1-final-b0nn1?file=/src/app.js"
+                target="_blank"
+                >Final</a
+              >
+            </div>
+
+            <aside class="notes">
+              <ol>
+                <li>Add effect that changes the document title</li>
+                <li>Make it only run when the count state changes</li>
+                <li>
+                  Add effect with timeout that changes the button's color to red
+                  after a second. Don't forget the cleanup.
+                </li>
+                <li>Make it run when count state changes</li>
+              </ol>
+            </aside>
+          </section>
+          <section>
+            <a href="" target="_blank">Code</a>
+            <div class="fragment">
+              <a href="" target="_blank">Final</a>
+            </div>
+
+            <aside class="notes">
+              <ol>
+                <li>
+                  Add effect that fetches a list of characters from the Star
+                  Wars movies
+                </li>
+              </ol>
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Refs</h3>
+            <p>Used to interact with DOM elements</p>
+            <p>Created with <code>useRef</code></p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Thinking in React</h3>
+
+            <aside class="notes">
+              <ol>
+                <li>Break a design into components</li>
+                <li>Identify the minimal representation of state</li>
+                <li>Identify where state should live</li>
+                <li>Add inverse data flow</li>
+              </ol>
+            </aside>
+          </section>
+          <section>
+            <h4>Break a design into components</h4>
+          </section>
+          <section
+            data-background-image="images/design.jpg"
+            data-background-size="contain"
+          ></section>
+          <section
+            data-background-image="images/design-components.jpg"
+            data-background-size="contain"
+          ></section>
+          <section>
+            <div class="side-by-side">
+              <img
+                src="images/design-components.jpg"
+                alt="Design of a job search application, broken down in components"
+              />
+              <img
+                src="images/components.png"
+                alt="Component hierarchy for the job search application"
+              />
+            </div>
+          </section>
+          <section>
+            <div class="side-by-side">
+              <img
+                src="images/design-components-alternative.jpg"
+                alt="Design of a job search application, broken down in components"
+              />
+              <img
+                src="images/components-alternative.png"
+                alt="Component hierarchy for the job search application"
+              />
+            </div>
+          </section>
+          <section data-transition="fade">
+            <img src="images/components.png" alt="Component hierarchy" />
+          </section>
+          <section data-transition="fade">
+            <img
+              src="images/components-job-list-state.png"
+              alt="Component hierarchy with job list state in job list component"
+            />
+          </section>
+          <section data-transition="fade">
+            <img
+              src="images/components-search-form-values-state.png"
+              alt="Component hierarchy with form values state in search bar component"
+            />
+          </section>
+          <section data-transition="fade">
+            <img
+              src="images/components-filters-state.png"
+              alt="Component hierarchy with filters state in jobs list component"
+            />
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>

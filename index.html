@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
 
-    <title>reveal.js</title>
+    <title>Advanced React</title>
 
     <link rel="stylesheet" href="dist/reset.css" />
     <link rel="stylesheet" href="dist/reveal.css" />
@@ -33,14 +33,14 @@
 
         <section>
           <section>
+            <h2>Getting started with React - part 2</h2>
             <ol>
-              <li>Data flow</li>
-              <li>Side Effects</li>
-              <li>Refs</li>
-              <li>Custom hooks</li>
-              <li>Render props</li>
-              <li>Context</li>
-              <li>Thinking in React</li>
+              <li class="fragment">Data flow</li>
+              <li class="fragment">Side Effects</li>
+              <li class="fragment">Refs</li>
+              <li class="fragment">Hooks</li>
+              <li class="fragment">Context</li>
+              <li class="fragment">Thinking in React</li>
             </ol>
           </section>
         </section>
@@ -154,15 +154,23 @@
             </aside>
           </section>
           <section>
-            <a href="" target="_blank">Code</a>
+            <a
+              href="https://codesandbox.io/s/cesium-react-session-effects-2-2r953?file=/src/app.js"
+              target="_blank"
+              >Code</a
+            >
             <div class="fragment">
-              <a href="" target="_blank">Final</a>
+              <a
+                href="https://codesandbox.io/s/cesium-react-session-effects-2-final-egksi?file=/src/app.js"
+                target="_blank"
+                >Final</a
+              >
             </div>
 
             <aside class="notes">
               <ol>
                 <li>
-                  Add effect that fetches a list of characters from the Star
+                  Add an effect that fetches a list of characters from the Star
                   Wars movies
                 </li>
               </ol>
@@ -175,6 +183,147 @@
             <h3>Refs</h3>
             <p>Used to interact with DOM elements</p>
             <p>Created with <code>useRef</code></p>
+          </section>
+          <section>
+            <a
+              href="https://codesandbox.io/s/cesium-react-session-refs-i5s4i?file=/src/app.js"
+              target="_blank"
+              >Code</a
+            >
+            <div class="fragment">
+              <a
+                href="https://codesandbox.io/s/cesium-react-session-refs-final-f4rg5?file=/src/app.js"
+                target="_blank"
+                >Final</a
+              >
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Hooks</h3>
+            <pre><code data-trim data-line-numbers="">
+function Counter() {
+  const [count, setCount] = useState(0);
+  // ...
+            </code></pre>
+          </section>
+          <section>
+            <h3>Rules of Hooks</h3>
+            <ul>
+              <li class="fragment">
+                Don't invoke Hooks from loops, conditions or nested functions
+              </li>
+              <li class="fragment">
+                Hooks can only be invoked inside components or other hooks
+              </li>
+            </ul>
+          </section>
+          <section>
+            <pre><code data-trim data-line-numbers="">
+function Counter({ shouldCount }) {
+  if (shouldCount) {
+    const [count, setCount] = useState(0); // ⚠️
+  }
+  // ...
+            </code></pre>
+            <pre
+              class="fragment"
+            ><code class="javascript" data-trim data-line-numbers="">
+function Counter({ shouldCount }) {
+  const [count, setCount] = useState(0); // ✅
+
+  function handleClick() {
+    if (shouldCount) {
+      setCount(count + 1);
+    }
+  }
+
+  // ...
+            </code></pre>
+          </section>
+          <section>
+            <pre><code data-trim data-line-numbers="">
+const [count, setCount] = useState(0); // ⚠️
+
+function Counter() {
+  // ...
+            </code></pre>
+            <pre
+              class="fragment"
+            ><code class="javascript" data-trim data-line-numbers="">
+function Counter() {
+  const [count, setCount] = useState(0); // ✅️
+  // ...
+            </code></pre>
+          </section>
+          <section>
+            <h4>Custom Hooks</h4>
+            <p class="fragment">
+              Functions whose names start with "use" and use other Hooks
+            </p>
+          </section>
+          <section>
+            <a
+              href="https://codesandbox.io/s/cesium-react-session-custom-hooks-emco8?file=/src/app.js"
+              target="_blank"
+              >Code</a
+            >
+            <div class="fragment">
+              <a
+                href="https://codesandbox.io/s/cesium-react-session-custom-hooks-final-if8w8?file=/src/app.js"
+                target="_blank"
+                >Final</a
+              >
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Context</h3>
+          </section>
+          <section>
+            <img
+              height="500"
+              src="images/component-tree.png"
+              alt="A tree of components with three levels"
+            />
+          </section>
+          <section>
+            <p>
+              Context provides a way to pass data through the component tree
+              without having to pass props down manually at every level
+            </p>
+          </section>
+          <section>
+            <img
+              src="images/context.png"
+              alt="A tree of components, with shared context"
+            />
+          </section>
+          <section>
+            <a
+              href="https://codesandbox.io/s/cesium-react-session-context-h3x1y?file=/src/app.js"
+              target="_blank"
+              >Code</a
+            >
+            <div class="fragment">
+              <a
+                href="https://codesandbox.io/s/cesium-react-session-context-final-ueo2n?file=/src/app.js"
+                target="_blank"
+                >Final</a
+              >
+            </div>
+          </section>
+          <section>
+            <h4>Usages of context</h4>
+            <ul>
+              <li>Theme context</li>
+              <li>Locale context</li>
+              <li>Session context</li>
+            </ul>
           </section>
         </section>
 
@@ -248,6 +397,8 @@
             />
           </section>
         </section>
+
+        <section><h3>Questions?</h3></section>
       </div>
     </div>
 
